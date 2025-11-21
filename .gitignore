@@ -1,0 +1,61 @@
+# Compiled class files
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# Log files
+*.log
+
+# Maven-specific files
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle-specific files
+.gradle/
+build/
+.settings/
+.project
+.classpath
+
+# IntelliJ IDEA-specific files
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse-specific files
+.metadata/
+.settings/
+.project
+.classpath
+
+# NetBeans-specific files
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Operating System files
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# build folders
+bin/
+target/
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/ 
