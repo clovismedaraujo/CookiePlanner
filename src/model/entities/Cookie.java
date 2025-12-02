@@ -32,7 +32,7 @@ public class Cookie {
 
 	@Override
 	public String toString() {
-		return "Cookie [nomeCookie=" + nomeCookie + ", precoCookie=" + precoCookie + "]";
+		return nomeCookie;
 	}
 	
 
