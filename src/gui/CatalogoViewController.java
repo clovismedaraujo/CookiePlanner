@@ -35,9 +35,6 @@ public class CatalogoViewController {
 	public void onRegistraCatalagoButtonAction() {
 		entity = getFormData();
 		service.salvarNoCatalogo(entity);
-		for (Cookie cookie : service.listaCatalogo) {
-		System.out.println(cookie);
-		}
 	}
 	
 	private Cookie getFormData() {
