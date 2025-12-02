@@ -2,13 +2,14 @@ package gui;
 
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import model.entities.Cookie;
+import model.services.CatalogoService;
 
 public class MainViewController {
 	@FXML
@@ -20,60 +21,69 @@ public class MainViewController {
 	@FXML
 	private Button vendasButton;
 
-	@FXML
-	private void abrirCatalogo(ActionEvent event) {
+
+	private void loadView(String absolutName) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("CatalogoView.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource(absolutName));
 
 			Scene scene = new Scene(root);
 
-			Stage catalogoStage = new Stage();
+			Stage subMenuStage = new Stage();
 			
-			catalogoStage.setScene(scene);
+			subMenuStage.setScene(scene);
 
-			catalogoStage.show();
+			subMenuStage.show();
+			subMenuStage.setResizable(false);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.err.println("Erro ao carregar a tela de Catálogo: " + e.getMessage());
+			System.err.println("Erro ao carregar a tela: " + e.getMessage());
 		}
 	}
-
-	@FXML
-	private void abrirEstoque(ActionEvent event) {
+	
+	private void loadCatalogoView(Cookie obj, String absolutName) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("EstoqueView.fxml"));
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absolutName));
+			Parent root = loader.load();
 
 			Scene scene = new Scene(root);
+			
+			CatalogoViewController controller = loader.getController();
+			controller.setCookie(obj);
+			controller.setCatalogoService(new CatalogoService());
+			controller.updateFormData();
 
-			Stage catalogoStage = new Stage();
-
-			catalogoStage.setScene(scene);
-
-			catalogoStage.show();
-
+			Stage subMenuStage = new Stage();
+			
+			
+			
+			subMenuStage.setScene(scene);
+			subMenuStage.show();
+			subMenuStage.setResizable(false);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.err.println("Erro ao carregar a tela de Estoque: " + e.getMessage());
+			System.err.println("Erro ao carregar a tela: " + e.getMessage());
 		}
 	}
 	
 	@FXML
-	private void abrirVendas(ActionEvent event) {
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("VendasView.fxml"));
-
-			Scene scene = new Scene(root);
-
-			Stage catalogoStage = new Stage();
-		
-			catalogoStage.setScene(scene);
-
-			catalogoStage.show();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.err.println("Erro ao carregar a tela de Estoque: " + e.getMessage());
-		}
+	public void onCatalogoButtonAction() {
+		Cookie obj = new Cookie();
+		loadCatalogoView(obj, "CatalogoView.fxml");
 	}
+	
+	@FXML
+	public void onEstoqueButtonAction() {
+		loadView("EstoqueView.fxml");
+	}
+	
+	@FXML
+	public void onVendasButtonAction() {
+		loadView("VendasView.fxml");
+	}
+	
+
+
 }

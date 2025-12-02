@@ -10,6 +10,9 @@ public class Cookie {
 		this.precoCookie = precoCookie;
 	}
 
+	public Cookie() {
+	}
+	
 	
 	public String getNomeCookie() {
 		return nomeCookie;
@@ -26,5 +29,11 @@ public class Cookie {
 	public void setPrecoCookie(double precoCookie) {
 		this.precoCookie = precoCookie;
 	}
+
+	@Override
+	public String toString() {
+		return "Cookie [nomeCookie=" + nomeCookie + ", precoCookie=" + precoCookie + "]";
+	}
+	
 
 }
