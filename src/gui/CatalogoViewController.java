@@ -2,6 +2,7 @@ package gui;
 
 import gui.util.Utils;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.entities.Cookie;
@@ -34,7 +35,14 @@ public class CatalogoViewController {
 	@FXML
 	public void onRegistraCatalagoButtonAction() {
 		entity = getFormData();
+		if (entity.getNomeCookie() == null || entity.getNomeCookie().trim().isEmpty() || entity.getPrecoCookie() == 0) {
+	        Utils.showAlert("Erro de Cadastro", "Dados Incompletos", "Por favor, preencha o Nome e o Preço corretamente.", AlertType.ERROR);
+	        return;
+	    }
+		
 		service.salvarNoCatalogo(entity);
+		
+		Utils.showAlert("Sucesso!", null, "Cookie '" + entity.getNomeCookie() + "' registrado no catálogo.", AlertType.INFORMATION);
 	}
 	
 	private Cookie getFormData() {

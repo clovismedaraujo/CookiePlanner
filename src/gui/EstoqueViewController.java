@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -35,8 +36,7 @@ public class EstoqueViewController implements Initializable {
 	
 	@FXML
 	private Button registraEstoqueButton;
-	
-	// CORREÇÃO CRÍTICA: O nome deve ser tableViewCookies para corresponder ao FXML
+
 	@FXML
 	private TableView<Estoque> tableViewCookies; 
 	
@@ -59,22 +59,22 @@ public class EstoqueViewController implements Initializable {
 	}
 	
 	private void initializeTableView() {
-		// Configura as colunas da TableView para a entidade Estoque
+
 		TableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nomeCookie"));
 		TableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
-		// Adiciona a ação do botão (se ainda não estiver no FXML)
+
 		registraEstoqueButton.setOnAction(event -> onRegistraEstoqueButtonAction());
 	}
 	
 	private void updateTableView() {
 		obslistEstoque = FXCollections.observableArrayList(estoqueService.getListaEstoque());
-		tableViewCookies.setItems(obslistEstoque); // Usa tableViewCookies
+		tableViewCookies.setItems(obslistEstoque);
 	}
 	
 	@FXML
 	public void onRegistraEstoqueButtonAction() {
 		if (nomeCookieComboBox.getValue() == null || quantidadeCookieTxtField.getText().isEmpty()) {
-			System.err.println("Selecione um cookie e digite a quantidade.");
+			Utils.showAlert("Erro de Entrada", "Dados Incompletos", "Por favor, selecione um cookie e digite a quantidade.", AlertType.ERROR);
 			return;
 		}
 		
@@ -82,13 +82,15 @@ public class EstoqueViewController implements Initializable {
 		Integer quantidade = Utils.tryParseToInt(quantidadeCookieTxtField.getText());
 		
 		if (quantidade == null || quantidade <= 0) {
-			System.err.println("Quantidade inválida.");
+			Utils.showAlert("Erro de Entrada", "Quantidade Inválida", "A quantidade deve ser um número inteiro positivo.", AlertType.ERROR);
 			return;
 		}
 		
 		estoqueService.registrarEntrada(nome, quantidade);
 		
 		updateTableView();
+		
+		Utils.showAlert("Sucesso!", null, "Entrada de estoque de " + nome + " registrada com sucesso.", AlertType.INFORMATION);
 		
 		nomeCookieComboBox.getSelectionModel().clearSelection();
 		quantidadeCookieTxtField.clear();

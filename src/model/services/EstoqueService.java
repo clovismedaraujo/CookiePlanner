@@ -61,9 +61,6 @@ public class EstoqueService {
 	    }
 	}
 	
-	/**
-	 * Registra uma entrada de estoque, atualiza a quantidade e persiste.
-	 */
 	public void registrarEntrada(String nomeCookie, int quantidade) {
 		Optional<Estoque> itemExistente = listaEstoque.stream()
 			.filter(e -> e.getNomeCookie().equalsIgnoreCase(nomeCookie))

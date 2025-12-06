@@ -7,26 +7,36 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="358.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="358.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VendasViewController">
    <children>
       <Label layoutX="14.0" layoutY="46.0" prefHeight="40.0" prefWidth="126.0" text="Vendas:">
          <font>
             <Font name="Arial Black" size="21.0" />
          </font>
       </Label>
+      
+      <ComboBox fx:id="nomeCookieComboBox" layoutX="14.0" layoutY="86.0" prefWidth="150.0" promptText="Sabor do cookie" />
+      
       <Label layoutX="14.0" layoutY="159.0" prefHeight="40.0" prefWidth="177.0" text="Quantidade:">
          <font>
             <Font name="Arial Black" size="21.0" />
          </font>
       </Label>
-      <TextField layoutX="14.0" layoutY="199.0" prefHeight="25.0" prefWidth="132.0" promptText="Digite a quantidade" />
-      <Button layoutX="14.0" layoutY="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Registrar" />
-      <ComboBox layoutX="14.0" layoutY="97.0" prefWidth="150.0" promptText="Sabor do cookie" />
-      <Label layoutX="205.0" layoutY="159.0" prefHeight="40.0" prefWidth="139.0" text="Preço total:">
+      <TextField fx:id="quantidadeCookieTxtField" layoutX="14.0" layoutY="199.0" prefHeight="25.0" prefWidth="132.0" promptText="Digite a quantidade" />
+      
+      <Button fx:id="registraVendaButton" layoutX="14.0" layoutY="245.0" mnemonicParsing="false" onAction="#onRegistraVendaButtonAction" prefHeight="25.0" prefWidth="132.0" text="Registrar Venda" />
+
+      <Label layoutX="14.0" layoutY="300.0" prefHeight="40.0" prefWidth="250.0" text="Receita Total:">
          <font>
             <Font name="Arial Black" size="21.0" />
          </font>
       </Label>
-      <TextField layoutX="202.0" layoutY="199.0" prefHeight="25.0" prefWidth="132.0" promptText="Valor total" />
+      
+      <Label fx:id="receitaTotalLabel" layoutX="14.0" layoutY="340.0" prefHeight="40.0" prefWidth="250.0" text="R$ 0,00">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
+      
    </children>
 </AnchorPane>
